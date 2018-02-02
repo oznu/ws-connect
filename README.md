@@ -62,6 +62,7 @@ This class represents a WebSocket. It extends the `EventEmitter`.
   * `reconnectInterval` {Number} The interval in milliseconds between connection attempts. Default 5000.
   * `pingInterval` {Number} The interval in milliseconds that the client should ping the server. Default 10000.
   * `pingFailureLimit` {Number} The number of failed pings before a reconnection is attempted. Default 2.
+  * `beforeConnect` {Promise} A function that returns a promise that is to be called before (re)connecting to the server.
   * `protocols` {String|Array} The list of subprotocols.
   * `options` {Object} The [ws](https://github.com/websockets/ws) client connection options. See [docs](https://github.com/websockets/ws/blob/master/doc/ws.md#new-websocketaddress-protocols-options).
 

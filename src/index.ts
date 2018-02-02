@@ -6,9 +6,10 @@ import { WebSocketOptions } from './interfaces';
 export = class WebSocket extends EventEmitter {
 
   public ws: WebSocketClient;
-  private address: string;
-  private protocols?: string | string[];
-  private options?: WebSocketClient.ClientOptions;
+  public address: string;
+  public protocols?: string | string[];
+  public options?: WebSocketClient.ClientOptions;
+  public beforeConnect: (connectionAttempts?: number) => Promise<void>;
 
   private reconnecting: boolean;
   private reconnectInterval: number;
@@ -35,10 +36,22 @@ export = class WebSocket extends EventEmitter {
     this.pingFailureLimit = options.pingFailureLimit || 2;
     this.pingTimeout = (this.pingInterval * this.pingFailureLimit) + 100;
 
+    this.beforeConnect = options.beforeConnect;
+
     this.init();
   }
 
   private init() {
+    // run a user defined function, if defined, before trying a reconnect
+    if (this.beforeConnect) {
+      return this.beforeConnect(this.connectionAttempt)
+        .then(() => this.connect());
+    } else {
+      return this.connect();
+    }
+  }
+
+  private connect() {
     this.connectionAttempt++;
     const attempt = this.connectionAttempt;
 

@@ -6,4 +6,5 @@ export interface WebSocketOptions {
   reconnectInterval?: number;
   pingInterval?: number;
   pingFailureLimit?: number;
+  beforeConnect?: (connectionAttempts?: number) => Promise<void>;
 }
