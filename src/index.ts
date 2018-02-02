@@ -23,7 +23,7 @@ export = class WebSocket extends EventEmitter {
 
   constructor(
     address: string,
-    options: WebSocketOptions,
+    options: WebSocketOptions = {},
   ) {
     super();
 
