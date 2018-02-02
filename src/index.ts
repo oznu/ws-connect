@@ -28,8 +28,8 @@ export = class WebSocket extends EventEmitter {
     super();
 
     this.address = address;
-    this.protocols = options.protocols;
-    this.options = options.options;
+    this.protocols = options.protocols || [];
+    this.options = options.options || {};
     this.reconnectInterval = options.reconnectInterval || 5000;
     this.pingInterval = options.pingInterval || 10000;
     this.pingFailureLimit = options.pingFailureLimit || 2;
