@@ -1,11 +1,13 @@
 {
   "name": "@oznu/ws-connect",
-  "version": "0.0.4",
+  "version": "1.0.0",
   "description": "WS WebSocket client wrapper to automatically reconnect lost or disconnected connections.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -23,12 +25,12 @@
   },
   "homepage": "https://github.com/oznu/ws-connect#readme",
   "devDependencies": {
-    "@types/node": "^9.4.0",
-    "@types/ws": "^4.0.0",
-    "tslint": "^5.9.1",
-    "typescript": "^2.7.1"
+    "@types/node": "^12.6.8",
+    "@types/ws": "^6.0.1",
+    "tslint": "^5.18.0",
+    "typescript": "^3.5.3"
   },
   "dependencies": {
-    "ws": "^4.0.0"
+    "ws": "^7.1.1"
   }
 }

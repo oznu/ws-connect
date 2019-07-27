@@ -1,3 +1,4 @@
+import * as url from 'url';
 import { EventEmitter } from 'events';
 import * as WebSocketClient from 'ws';
 
@@ -11,6 +12,7 @@ export = class WebSocket extends EventEmitter {
   public options?: WebSocketClient.ClientOptions;
   public beforeConnect: (connectionAttempts?: number) => Promise<void>;
 
+  private url: url.Url;
   private reconnecting: boolean;
   private reconnectInterval: number;
   private pingInterval: number;
@@ -35,6 +37,7 @@ export = class WebSocket extends EventEmitter {
     this.pingInterval = options.pingInterval || 10000;
     this.pingFailureLimit = options.pingFailureLimit || 2;
     this.pingTimeout = (this.pingInterval * this.pingFailureLimit) + 100;
+    this.url = url.parse(this.address);
 
     this.beforeConnect = options.beforeConnect;
 
@@ -82,7 +85,7 @@ export = class WebSocket extends EventEmitter {
     ws.on('open', () => {
       this.reconnecting = false;
       this.emit('open');
-      this.emit('websocket-status', `Connected (${attempt}) - ${this.address}`);
+      this.emit('websocket-status', `Connected (${attempt}) - ${this.url.protocol}//${this.url.host}`);
       this.pong = setTimeout(pongTimeout.bind(this), this.pingTimeout);
     });
 
