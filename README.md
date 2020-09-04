@@ -2,7 +2,7 @@
 
 WS Connect is a wrapper for the [ws](https://github.com/websockets/ws) WebSocket client for Node.js that will automatically reconnect lost or disconnected WebSocket connections transparently.
 
-This module is for Node.js 6+ only and will not work in the browser. The server implementation must respond to `ping` messages as required by the WebSocket spec.
+This module is for Node.js 10+ only and will not work in the browser. The server implementation must respond to `ping` messages as required by the WebSocket spec.
 
 ## Install
 
@@ -15,7 +15,7 @@ npm install @oznu/ws-connect
 ### Example
 
 ```js
-const WebSocket = require('@oznu/ws-connect')
+const { WebSocket } = require('@oznu/ws-connect')
 
 // establish new websocket connection
 const socket = new WebSocket('ws://127.0.0.1:8080')

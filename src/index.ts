@@ -4,7 +4,7 @@ import * as WebSocketClient from 'ws';
 
 import { WebSocketOptions } from './interfaces';
 
-export = class WebSocket extends EventEmitter {
+export class WebSocket extends EventEmitter {
 
   public ws: WebSocketClient;
   public address: string;
@@ -149,4 +149,4 @@ export = class WebSocket extends EventEmitter {
     this.emit('websocket-status', `Closed (${this.connectionAttempt})`);
   }
 
-};
+}

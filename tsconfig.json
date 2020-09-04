@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "es2018",
     "module": "commonjs",
     "outDir": "dist",
     "sourceMap": true,
@@ -8,6 +8,12 @@
     "declaration": true,
     "types": [
       "node"
+    ],
+    "lib": [
+      "es2015",
+      "es2016",
+      "es2017",
+      "es2018"
     ]
   },
   "include": [
