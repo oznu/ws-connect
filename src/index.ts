@@ -37,7 +37,6 @@ export class WebSocket extends EventEmitter {
     this.pingInterval = options.pingInterval || 10000;
     this.pingFailureLimit = options.pingFailureLimit || 2;
     this.pingTimeout = (this.pingInterval * this.pingFailureLimit) + 100;
-    this.url = url.parse(this.address);
 
     this.beforeConnect = options.beforeConnect;
 
@@ -57,6 +56,8 @@ export class WebSocket extends EventEmitter {
   private connect() {
     this.connectionAttempt++;
     const attempt = this.connectionAttempt;
+
+    this.url = url.parse(this.address);
 
     const ws: WebSocketClient = new WebSocketClient(this.address, this.protocols, this.options);
     this.ws = ws;
@@ -151,6 +152,11 @@ export class WebSocket extends EventEmitter {
 
   public isConnected() {
     return this.ws.readyState === this.ws.OPEN;
+  }
+
+  public setAddresss(address: string) {
+    this.address = address;
+    this.url = url.parse(this.address);
   }
 
 }
