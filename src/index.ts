@@ -149,4 +149,8 @@ export class WebSocket extends EventEmitter {
     this.emit('websocket-status', `Closed (${this.connectionAttempt})`);
   }
 
+  public isConnected() {
+    return this.ws.readyState === this.ws.OPEN;
+  }
+
 }
